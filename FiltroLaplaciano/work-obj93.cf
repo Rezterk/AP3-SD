@@ -1,0 +1,7 @@
+v 4
+file . "address_logic.vhdl" "cbd0137bd3b65a93c31c13d1fdabdb1e58b707b5" "20250701210634.784":
+  entity central_pixel_logic at 1( 0) + 0 on 13;
+  architecture arch of central_pixel_logic at 23( 752) + 0 on 14;
+file . "signed_adder.vhdl" "1c09a8c537969ad80ae15aadefb03209b8a1a867" "20250701210313.020":
+  entity signed_adder at 1( 0) + 0 on 11;
+  architecture arch of signed_adder at 22( 762) + 0 on 12;

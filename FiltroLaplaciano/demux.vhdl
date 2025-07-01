@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 entity demux is
 	port (
 		sel: in std_logic_vector(3 downto 0);
-		A, B, C, D, E, F, G, H, I: out std_logic;	
+		A, B, C, D, E, F, G, H, I: out std_logic	
 	);
 end demux;
 
