@@ -8,11 +8,11 @@ use ieee.numeric_std.all;
 entity address_logic is
 	generic(
 		image_length : positive := 8;
-        address_length     : positive := 4
+        address_length     : positive := 6
 	);
 	port(
 		central_address : in unsigned(address_length-1 downto 0);
-        sel : in std_logic_vector (3 downto 0);
+        sel : in std_logic_vector (2 downto 0);
         new_addres : out unsigned(address_length-1 downto 0)
     );
 end address_logic;
@@ -27,24 +27,16 @@ begin
     process(sel)
     begin
         case sel is
-        when "0000" =>
-            sum_factor <= to_signed(-image_length-1, sum_factor'length);
-        when "0001" =>
+        when "000" =>
             sum_factor <= to_signed(-image_length, sum_factor'length);
-        when "0010" =>
-            sum_factor <= to_signed(1+image_length, sum_factor'length);
-        when "0011" =>
+        when "001" =>
             sum_factor <= to_signed(-1, sum_factor'length);
-        when "0100" =>
-            sum_factor <= to_signed(0, sum_factor'length);
-        when "0101" =>
+        when "010" =>
+            sum_factor <= to_signed(0, sum_factor'length);        
+        when "011" =>
             sum_factor <= to_signed(1, sum_factor'length);
-        when "0110" =>
-            sum_factor <= to_signed(image_length-1, sum_factor'length);
-        when "0111" =>
+        when "100" =>
             sum_factor <= to_signed(image_length, sum_factor'length);
-        when "1000" =>
-            sum_factor <= to_signed(image_length+1, sum_factor'length);
         when others =>
             sum_factor <= to_signed(0, sum_factor'length);
         end case;
