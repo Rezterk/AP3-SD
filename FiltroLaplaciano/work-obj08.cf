@@ -1,0 +1,28 @@
+v 4
+file . "unsigned_register.vhdl" "79071150032dcdcd90c90aef59136ceeb43f41fe" "20250701224936.864":
+  entity unsigned_register at 13( 576) + 0 on 21;
+  architecture behavior of unsigned_register at 34( 1358) + 0 on 22;
+file . "unsigned_adder.vhdl" "de7706d48aab5df89aef55a492352d4ebc3a7a1e" "20250701224936.872":
+  entity unsigned_adder at 12( 492) + 0 on 29;
+  architecture arch of unsigned_adder at 33( 1264) + 0 on 30;
+file . "signed_multiplier.vhdl" "3dfb960a4320bd275df019fbd31c0cbf6adbd864" "20250701224936.860":
+  entity signed_multiplier at 1( 0) + 0 on 17;
+  architecture behavior of signed_multiplier at 15( 270) + 0 on 18;
+file . "signed_adder.vhdl" "1c09a8c537969ad80ae15aadefb03209b8a1a867" "20250701224936.859":
+  entity signed_adder at 1( 0) + 0 on 15;
+  architecture arch of signed_adder at 22( 762) + 0 on 16;
+file . "demux.vhdl" "b1d0605cd627b90b922aca4187a1e359f722ed6b" "20250701224936.856":
+  entity demux at 1( 0) + 0 on 13;
+  architecture behavior of demux at 12( 195) + 0 on 14;
+file . "comparator.vhdl" "1235e81af66c9a143fbf59c2b610763e9a087087" "20250701224936.868":
+  entity comparator at 1( 0) + 0 on 25;
+  architecture behavior of comparator at 15( 212) + 0 on 26;
+file . "clip.vhdl" "7b1a1e5f955e9071d8c273e58e8249efbf40bce8" "20250701224936.866":
+  entity clip at 11( 377) + 0 on 23;
+  architecture behavior of clip at 27( 642) + 0 on 24;
+file . "central_pixel_logic.vhdl" "9675f1abd1c2a12a54d22fcea0d00cfec5abed02" "20250701224936.862":
+  entity central_pixel_logic at 1( 0) + 0 on 19;
+  architecture arch of central_pixel_logic at 22( 666) + 0 on 20;
+file . "address_logic.vhdl" "f41f9e353db31509d5be76c620defb10a2f84d79" "20250701224936.870":
+  entity address_logic at 1( 0) + 0 on 27;
+  architecture arch of address_logic at 23( 740) + 0 on 28;

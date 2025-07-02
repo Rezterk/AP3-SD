@@ -1,7 +1,19 @@
 v 4
-file . "address_logic.vhdl" "cbd0137bd3b65a93c31c13d1fdabdb1e58b707b5" "20250701210634.784":
-  entity central_pixel_logic at 1( 0) + 0 on 13;
-  architecture arch of central_pixel_logic at 23( 752) + 0 on 14;
+file . "comparator.vhdl" "1235e81af66c9a143fbf59c2b610763e9a087087" "20250701224648.285":
+  entity comparator at 1( 0) + 0 on 23;
+  architecture behavior of comparator at 15( 212) + 0 on 24;
+file . "demux.vhdl" "b1d0605cd627b90b922aca4187a1e359f722ed6b" "20250701210914.378":
+  entity demux at 1( 0) + 0 on 15;
+  architecture behavior of demux at 12( 195) + 0 on 16;
 file . "signed_adder.vhdl" "1c09a8c537969ad80ae15aadefb03209b8a1a867" "20250701210313.020":
   entity signed_adder at 1( 0) + 0 on 11;
   architecture arch of signed_adder at 22( 762) + 0 on 12;
+file . "address_logic.vhdl" "f41f9e353db31509d5be76c620defb10a2f84d79" "20250701211209.260":
+  entity address_logic at 1( 0) + 0 on 19;
+  architecture arch of address_logic at 23( 740) + 0 on 20;
+file . "unsigned_register.vhdl" "79071150032dcdcd90c90aef59136ceeb43f41fe" "20250701210927.204":
+  entity unsigned_register at 13( 576) + 0 on 17;
+  architecture behavior of unsigned_register at 34( 1358) + 0 on 18;
+file . "central_pixel_logic.vhdl" "9675f1abd1c2a12a54d22fcea0d00cfec5abed02" "20250701211721.815":
+  entity central_pixel_logic at 1( 0) + 0 on 21;
+  architecture arch of central_pixel_logic at 22( 666) + 0 on 22;

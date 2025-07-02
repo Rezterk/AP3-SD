@@ -1,0 +1,14 @@
+# Este é um comentário
+# Mapeia bibliotecas VHDL para pastas do projeto
+
+[Common Libraries]
+# Mapeia a biblioteca 'work' para a pasta atual (onde o arquivo .sigasi.project está)
+work = .
+
+# Mapeia a biblioteca 'ieee' para uma cópia local ou para a fornecida por ferramentas
+# como o VUnit (se você usar). Se você tiver a biblioteca IEEE em uma pasta 'libs/ieee',
+# use: ieee = libs/ieee
+ieee = ${sigasi.vunit_lib}/ieee
+
+# Se você tiver uma biblioteca customizada em uma pasta 'my_lib'
+# my_custom_lib = my_lib

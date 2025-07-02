@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 entity comparator is
 	generic (
-		N: positive := 9;
+		N: positive := 9
 	);
 	port (
 		a, b: in unsigned(N-1 downto 0);

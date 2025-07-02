@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 -- Somador sem sinal (unsigned) parametrizável para N bits.
 -- Calcula a soma entre input_a e input_b.
 -- A saída `sum` possui N+1 bits para representar corretamente o resultado.
-entity central_pixel_logic is
+entity address_logic is
 	generic(
 		image_length : positive := 8;
         address_length     : positive := 4
@@ -15,13 +15,14 @@ entity central_pixel_logic is
         sel : in std_logic_vector (3 downto 0);
         new_addres : out unsigned(address_length-1 downto 0)
     );
-end central_pixel_logic;
+end address_logic;
 -- Não altere a definição da entidade!
 -- Ou seja, não modifique o nome da entidade, nome das portas e tipos/tamanhos das portas!
 
 -- Não alterar o nome da arquitetura!
-architecture arch of central_pixel_logic is
-    signal sum_factor, sum_result, resized_central_address : signed(central_address'length downto 0);
+architecture arch of address_logic is
+    signal sum_factor, resized_central_address : signed(central_address'length downto 0);
+    signal sum_result : signed(central_address'length+1 downto 0);
 begin
     process(sel)
     begin
@@ -59,6 +60,5 @@ begin
             );
     
     resized_central_address <= signed(resize(central_address, sum_factor'length));
-    sum_result <= signed(resize(central_address, sum_factor'length));
-    new_addres <= unsigned(sum_result(address_length downto 0));
+    new_addres <= unsigned(sum_result(address_length-1 downto 0));
 end architecture arch;

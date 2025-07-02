@@ -20,17 +20,17 @@ end central_pixel_logic;
 
 -- Não alterar o nome da arquitetura!
 architecture arch of central_pixel_logic is
-    signal remainder : unsigned (address'length-1 downto 0)
+    signal remainder : unsigned(address'length-1 downto 0);
 begin
     remainder <= address mod to_unsigned(image_length, address'length);
     process (remainder)
-        case remainder is
-        when to_unsigned(0, address'length) =>
+    begin
+        if remainder = to_unsigned(0, address_length) then 
             flag <= '0';
-        when to_unsigned(image_length-1, address_length) =>
+        elsif remainder = to_unsigned(image_length-1, address_length) then
             flag <= '0';
-        when others =>
+        else
             flag <= '1';
-        end case;
+        end if;
     end process;
 end architecture arch;

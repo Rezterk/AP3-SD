@@ -8,7 +8,7 @@ entity signed_multiplier is
 	);
 	port(
 		a,b : in signed(N-1 downto 0);
-        mult: out signed(N*2 downto 0);
+        mult: out signed(N*2-1 downto 0)
 	);
 end signed_multiplier;
 
