@@ -21,7 +21,7 @@ architecture behavior of laplacian_convolution is
 begin
 
 	-- MULTIPLICADOR
-	MULT: ENTITY work.signed_multiplier
+	MULT: ENTITY work.signed_multiplier(behavior)
 		generic map(
 			N => bits_per_sample+1
 		)
@@ -33,7 +33,7 @@ begin
 	
 	-- ÁRVORE DE SOMADORES
 	-- ===== NÍVEL 0 =====
-	SUM0_1: ENTITY work.signed_adder
+	SUM0_1: ENTITY work.signed_adder(arch)
 		generic map(
 			N => bits_per_sample+1
 		)
@@ -43,7 +43,7 @@ begin
 			sum     => result_sum0_1
 		);
 
-	SUM0_2: ENTITY work.signed_adder
+	SUM0_2: ENTITY work.signed_adder(arch)
 		generic map(
 			N => bits_per_sample+1
 		)
@@ -54,7 +54,7 @@ begin
 		);
 	
 	-- ===== NÍVEL 1 =====
-	SUM1: ENTITY work.signed_adder
+	SUM1: ENTITY work.signed_adder(arch)
 		generic map(
 			N => bits_per_sample+2
 		)
@@ -66,7 +66,7 @@ begin
 
 	-- ===== NÍVEL 2 =====
 	
-	SUM2: ENTITY work.signed_adder
+	SUM2: ENTITY work.signed_adder(arch)
 		generic map(
 			N => bits_per_sample+3
 		)
@@ -78,7 +78,7 @@ begin
 
 	-- CLIP do PIXEL resultante
 
-	CLIP_P: ENTITY work.clip
+	CLIP_P: ENTITY work.clip(behavior)
 		generic map(
 			N    => bits_per_sample+4,
 			LOW  => 0,
@@ -91,7 +91,7 @@ begin
 	
 	-- CLIP do NÚMERO MULTIPLICADO
 	
-	CLIP_M: ENTITY work.clip
+	CLIP_M: ENTITY work.clip(behavior)
 		generic map(
 			N    => bits_per_sample*2+2,
 			LOW  => 0,

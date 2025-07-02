@@ -4,8 +4,8 @@ use ieee.numeric_std.all;
 use ieee.math_real.all;
 
 package filtro_pack is
-    --TODO: DECLARAR TIPO ARRAY PARA MEMÓRIA
     type image_mem is array (natural range <>) of unsigned;
+
 
     function to_imagem_mem(param : std_logic_vector; N : positive; P : positive)
     return image_mem;
@@ -15,6 +15,9 @@ package filtro_pack is
     -- e o resultado é o menor inteiro maior ou igual a log2 desse valor.
     function address_length(samples_per_block : positive; parallel_samples : positive)
     return positive;
+
+    function to_std_logic_vector(param : image_mem; N : positive; P : positive)
+    return std_logic_vector;
 end package filtro_pack;
 
 package body filtro_pack is
@@ -34,4 +37,14 @@ package body filtro_pack is
         end loop;
         return return_vector;
     end function to_imagem_mem;
+
+    function to_std_logic_vector(param : image_mem; N : positive; P : positive)
+    return std_logic_vector is
+        variable return_vector : std_logic_vector(N * P - 1 downto 0);
+    begin
+        for i in 0 to P - 1 loop
+            return_vector(N * (i + 1) - 1 downto N * i) := std_logic_vector(param(i));
+        end loop;
+        return return_vector;
+    end function to_std_logic_vector;
 end package body filtro_pack;

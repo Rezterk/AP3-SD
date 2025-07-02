@@ -17,7 +17,7 @@ entity filtro_bo is
         cEndOri, zEndOri, cEndOut, zEndOut, cDEMUX, zDEMUX, cREGCONV, escMEM     : in std_logic;
         sample_image : in image_mem(0 to origin_samples_per_block-1)(bits_per_sample-1 downto 0);
         doneIMG, maxDEMUX, validPixel : out std_logic;
-        filtered_image : out image_mem(0 to output_samples_per_block-1)(bits_per_sample-1 downto 0)
+        laplacian_image : out image_mem(0 to output_samples_per_block-1)(bits_per_sample-1 downto 0)
 	);
 end filtro_bo;
 -- Não altere a definição da entidade!
@@ -161,7 +161,7 @@ begin
             clk    => clk,
             enable => escMEM,
             d      => convolution_reg,
-            q      => filtered_image(to_integer(outputEndCont))
+            q      => laplacian_image(to_integer(outputEndCont))
         );
 
     -- COMPARADORES
