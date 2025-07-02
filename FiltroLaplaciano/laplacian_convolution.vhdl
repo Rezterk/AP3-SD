@@ -13,11 +13,11 @@ entity laplacian_convolution is
 end laplacian_convolution;
 
 architecture behavior of laplacian_convolution is
-	signal m3 : signed(bits_per_sample*2+1 downto 0);
+	signal m3, clipped_mult_value : signed(bits_per_sample*2+1 downto 0);
 	signal resized_p1, resized_p2, resized_p3, resized_p4 : signed(bits_per_sample downto 0);
 	signal result_sum0_1, result_sum0_2 : signed(bits_per_sample+1 downto 0);
 	signal resized_p5, result_sum1 : signed(bits_per_sample+2 downto 0);
-	signal result_sum2, clipped_value : signed(bits_per_sample+3 downto 0);
+	signal result_sum2, clipped_out_value : signed(bits_per_sample+3 downto 0);
 begin
 
 	-- MULTIPLICADOR
@@ -48,7 +48,7 @@ begin
 			N => bits_per_sample+1
 		)
 		port map(
-			input_a => m3,
+			input_a => clipped_mult_value(bits_per_sample downto 0),
 			input_b => resized_p4,
 			sum     => result_sum0_2
 		);
@@ -78,7 +78,7 @@ begin
 
 	-- CLIP do PIXEL resultante
 
-	CLIP: ENTITY work.clip
+	CLIP_P: ENTITY work.clip
 		generic map(
 			N    => bits_per_sample+4,
 			LOW  => 0,
@@ -86,10 +86,23 @@ begin
 		)
 		port map(
 			value         => result_sum2,
-			clipped_value => clipped_value
+			clipped_value => clipped_out_value
 		);
 	
+	-- CLIP do NÚMERO MULTIPLICADO
 	
+	CLIP_M: ENTITY work.clip
+		generic map(
+			N    => bits_per_sample*2+2,
+			LOW  => 0,
+			HIGH => (p_out'length**2)-1
+		)
+		port map(
+			value         => m3,
+			clipped_value => clipped_mult_value
+		);
+	
+
 	-- Aumentando os pixels para Sinalizar
 	resized_p1 <= signed(resize(p1, bits_per_sample+1));
 	resized_p2 <= signed(resize(p2, bits_per_sample+1));
@@ -98,6 +111,6 @@ begin
 	resized_p5 <= signed(resize(p5, bits_per_sample+3)); -- Como o p5 será o último a ser somado, seu tamanho será diferente
 
 	-- Fornecendo a saída no tamanho esperado
-	p_out <= unsigned(clipped_value(p_out'range));
+	p_out <= unsigned(clipped_out_value(p_out'range));
 
 end behavior;
