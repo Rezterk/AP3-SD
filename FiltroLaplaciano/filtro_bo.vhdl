@@ -141,7 +141,7 @@ begin
             q      => p5
         );
 
-    REG_CONV: ENTITY work.unsigned_register
+    REG_CONV: ENTITY work.unsigned_register(behavior)
         generic map(
             N => bits_per_sample
         )

@@ -20,7 +20,7 @@ architecture behavior of counter is
     signal i_mux        : std_logic_vector(N downto 0);
 begin
 
-    SUM: ENTITY work.unsigned_adder
+    SUM: ENTITY work.unsigned_adder(arch)
         generic map(
             N => N
         )
@@ -30,7 +30,7 @@ begin
             sum     => i_sum
         );
     
-    REG: ENTITY work.unsigned_register
+    REG: ENTITY work.unsigned_register(behavior)
         generic map(
             N => N+1
         )
@@ -41,7 +41,7 @@ begin
             q      => i_reg
         );
     
-    MUX: ENTITY work.mux_2to1
+    MUX: ENTITY work.mux_2to1(behavior)
         generic map(
             N => N+1
         )
