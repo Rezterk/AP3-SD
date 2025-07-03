@@ -29,7 +29,7 @@ architecture arch of filtro_bo is
     signal outputEndCont : unsigned(output_address_length-1 downto 0);
     signal demuxSel      : unsigned(2 downto 0);
     signal cP1, cP2, cP3, cP4, cP5 : std_logic;
-    signal p1, p2, p3, p4, p5, convolution_value, convolution_reg : unsigned (bits_per_sample-1 downto 0);
+    signal p1, p2, p3, p4, p5, pixel, laplacian_pixel, convolution_value, convolution_reg : unsigned (bits_per_sample-1 downto 0);
 begin
     -- Contadores =====================================
     -- ADICIONAR DEPOIS OS SINAIS DE CONTROLE E STATUS
@@ -93,7 +93,7 @@ begin
         port map(
             clk    => clk,
             enable => cP1,
-            d      => sample_image(to_integer(pixelAddress)),
+            d      => pixel,
             q      => p1
         );
 
@@ -104,7 +104,7 @@ begin
         port map(
             clk    => clk,
             enable => cP2,
-            d      => sample_image(to_integer(pixelAddress)),
+            d      => pixel,
             q      => p2
         );
 
@@ -115,7 +115,7 @@ begin
         port map(
             clk    => clk,
             enable => cP3,
-            d      => sample_image(to_integer(pixelAddress)),
+            d      => pixel,
             q      => p3
         );
 
@@ -126,7 +126,7 @@ begin
         port map(
             clk    => clk,
             enable => cP4,
-            d      => sample_image(to_integer(pixelAddress)),
+            d      => pixel,
             q      => p4
         );
 
@@ -137,7 +137,7 @@ begin
         port map(
             clk    => clk,
             enable => cP5,
-            d      => sample_image(to_integer(pixelAddress)),
+            d      => pixel,
             q      => p5
         );
 
@@ -161,7 +161,7 @@ begin
             clk    => clk,
             enable => escMEM,
             d      => convolution_reg,
-            q      => laplacian_image(to_integer(outputEndCont))
+            q      => laplacian_pixel
         );
 
     -- COMPARADORES
@@ -224,5 +224,6 @@ begin
             p_out => convolution_value
         );
 
-    
+    pixel <= sample_image(to_integer(pixelAddress));
+    laplacian_image(to_integer(outputEndCont)) <= laplacian_pixel;
 end architecture arch;

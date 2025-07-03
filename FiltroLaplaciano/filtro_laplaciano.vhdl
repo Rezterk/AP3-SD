@@ -14,7 +14,7 @@ entity filtro_laplaciano is
         start, reset : in std_logic;
         image : in std_logic_vector(bits_per_sample * samples_per_block - 1 downto 0);
         laplacian_image : out std_logic_vector(bits_per_sample * (image_length-2)**2 - 1 downto 0);
-        done : std_logic
+        done : out std_logic
     );
 end filtro_laplaciano;
 -- Não altere a definição da entidade!
