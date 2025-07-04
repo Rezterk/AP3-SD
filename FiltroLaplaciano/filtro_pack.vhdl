@@ -6,16 +6,18 @@ use ieee.math_real.all;
 package filtro_pack is
     type image_mem is array (natural range <>) of unsigned;
 
-
+    -- Função que divide um vetor contínuo da imagem em um array
+    -- Usamos ela para simular a memória da imagem.
     function to_imagem_mem(param : std_logic_vector; N : positive; P : positive)
     return image_mem;
 
-    -- Calcula o número de bits necessários para indexar todos os grupos parciais de amostras
-    -- dentro de um bloco completo. O número de grupos é (samples_per_block / parallel_samples),
-    -- e o resultado é o menor inteiro maior ou igual a log2 desse valor.
+    -- Função reutilizada da AP2. 
+    -- Obtém o número de bits necessários para endereçar a quantidade de amostras da imagem.
     function address_length(samples_per_block : positive; parallel_samples : positive)
     return positive;
 
+    -- Função reutilizada da AP2.
+    -- Devolve um vetor contínuo de acordo com os valores no array image_mem
     function to_std_logic_vector(param : image_mem; N : positive; P : positive)
     return std_logic_vector;
 end package filtro_pack;

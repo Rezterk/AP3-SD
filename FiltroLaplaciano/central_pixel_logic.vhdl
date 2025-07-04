@@ -2,9 +2,15 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
--- Somador sem sinal (unsigned) parametrizável para N bits.
--- Calcula a soma entre input_a e input_b.
--- A saída `sum` possui N+1 bits para representar corretamente o resultado.
+-- Esse componente serve de apoio para o BC. Nele, identificamos se o endereço recebido é válido
+-- para as contas de convolução. Resumindo, verificamos se esse pixel pertence à alguma borda da
+-- imagem.
+
+-- OBS: No nosso sistema, o primeiro endereço passado já é válido. Assim, não verificamos a borda
+--      de cima. O processo também termina antes que o endereço precise atingir a borda inferior.
+
+-- `address` é o sinal de endereço enviado para ser verificado.
+-- `flag` retorna '0' se o valor for inválido e '1' se for válido.
 entity central_pixel_logic is
 	generic(
 		image_length : positive := 8;
@@ -15,10 +21,7 @@ entity central_pixel_logic is
         flag   : out std_logic
     );
 end central_pixel_logic;
--- Não altere a definição da entidade!
--- Ou seja, não modifique o nome da entidade, nome das portas e tipos/tamanhos das portas!
 
--- Não alterar o nome da arquitetura!
 architecture arch of central_pixel_logic is
     signal remainder : unsigned(address'length-1 downto 0);
 begin

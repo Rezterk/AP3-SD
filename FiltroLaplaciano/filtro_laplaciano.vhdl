@@ -5,25 +5,29 @@ use work.filtro_pack.all;
 
 entity filtro_laplaciano is
 	generic(
-		image_length      : positive := 10;
-        bits_per_sample   : positive := 8;
-        samples_per_block : positive := 100
+		image_length      : positive := 5; -- Tamanho da imagem
+        bits_per_sample   : positive := 8; -- Quantidades de bits para cada Pixel
+        samples_per_block : positive := 25 -- Quantidade de amostras da imagem (sempre será image_lenth**2, só tratamos imagens quadradas)
 	);
 	port(
-		clk   : in std_logic;
-        start, reset : in std_logic;
-        image : in std_logic_vector(bits_per_sample * samples_per_block - 1 downto 0);
+		clk             : in std_logic; 
+        start, reset    : in std_logic; -- Iniciar e Reset do sistema
+        -- Imagem original inserida no filtro
+        image           : in std_logic_vector(bits_per_sample * samples_per_block - 1 downto 0);
+
+        -- Imagem original filtrada (Seu tamanho é menor porque usamos CROP para a convolução)
         laplacian_image : out std_logic_vector(bits_per_sample * (image_length-2)**2 - 1 downto 0);
-        done : out std_logic
+
+        done            : out std_logic -- sinal pronto
     );
 end filtro_laplaciano;
--- Não altere a definição da entidade!
--- Ou seja, não modifique o nome da entidade, nome das portas e tipos/tamanhos das portas!
 
--- Não alterar o nome da arquitetura!
 architecture arch of filtro_laplaciano is
+    -- Sinais que recebem a imagem como array
     signal image_array : image_mem(0 to samples_per_block-1)(bits_per_sample-1 downto 0);
     signal laplacian_image_array : image_mem(0 to (image_length-2)**2-1)(bits_per_sample-1 downto 0);
+
+    -- Sinais de Controle e Status
     signal cEndOri, zEndOri, cEndOut, zEndOut, cREGCONV : std_logic;
     signal cP1, cP2, cP3, cP4, cP5 : std_logic;
     signal doneIMG, validPixel : std_logic;
@@ -62,7 +66,7 @@ begin
             laplacian_image => laplacian_image_array
         );
     
-    
+    -- BC
     BC: ENTITY work.filtro_bc(behavior)
         port map(
             clk        => clk,
@@ -87,7 +91,9 @@ begin
             opADDRESS  => opADDRESS
         );
     
-
+    -- Transformando a imagem contínua no tipo Array
     image_array <= to_imagem_mem(image, bits_per_sample, samples_per_block);
+
+    -- Convertendo o Array para um std_logic_vector
     laplacian_image <= to_std_logic_vector(laplacian_image_array, bits_per_sample, (image_length-2)**2);
 end architecture arch;

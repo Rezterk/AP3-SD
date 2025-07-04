@@ -1,17 +1,14 @@
---------------------------------------------------
---	Author:          Ismael Seidel
---	Created:         Apr 5, 2025
---
---	Project:         Exercício 4 de INE5406
---	Description:     Contém a descrição de um módulo
--- 					 que faz a operação de clip. 
---                   clipped_value = max(min(value, HIGH), LOW).
---------------------------------------------------
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all; 
 
+-- Componente criado para uma Atividade Prática anterior e que está sendo reutilizado.
+-- Esse componente verifica se os valores que serão passados para um Pixel estão dentro
+-- de seu intervalo de tamanho. Caso não esteja, seu valor é atualizado seguindo os limites
+-- do pixel.
+
+-- `value` é o valor recebido para ser clippado.
+-- `clipped_value` retorna o valor corretamente clippado.
 entity clip is
 	generic (
 		N: positive := 9;

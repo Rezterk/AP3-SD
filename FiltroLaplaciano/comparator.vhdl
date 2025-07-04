@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 entity comparator is
 	generic (
-		N: positive := 9
+		N: positive := 8
 	);
 	port (
 		a, b: in unsigned(N-1 downto 0);
@@ -12,6 +12,7 @@ entity comparator is
 	);
 end comparator;
 
+-- Componente simples que apenas compara se a = b.
 architecture behavior of comparator is
 begin
 	PROCESS (a, b)

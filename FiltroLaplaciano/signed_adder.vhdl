@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
--- Somador sem sinal (unsigned) parametrizável para N bits.
+-- Somador com sinal (signed) parametrizável para N bits.
 -- Calcula a soma entre input_a e input_b.
 -- A saída `sum` possui N+1 bits para representar corretamente o resultado.
 entity signed_adder is
@@ -15,10 +15,7 @@ entity signed_adder is
 		sum     : out signed(N downto 0)      -- saída da soma com N+1 bits
 	);
 end signed_adder;
--- Não altere a definição da entidade!
--- Ou seja, não modifique o nome da entidade, nome das portas e tipos/tamanhos das portas!
 
--- Não alterar o nome da arquitetura!
 architecture arch of signed_adder is
 begin
     sum <= SIGNED(resize(input_a, N + 1) + SIGNED(resize(input_b, N + 1)));

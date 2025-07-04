@@ -26,10 +26,7 @@ entity unsigned_adder is
 		sum     : out unsigned(N downto 0)      -- saída da soma com N+1 bits
 	);
 end unsigned_adder;
--- Não altere a definição da entidade!
--- Ou seja, não modifique o nome da entidade, nome das portas e tipos/tamanhos das portas!
 
--- Não alterar o nome da arquitetura!
 architecture arch of unsigned_adder is
 begin
     sum <= UNSIGNED(resize(input_a, N + 1) + UNSIGNED(resize(input_b, N + 1)));
