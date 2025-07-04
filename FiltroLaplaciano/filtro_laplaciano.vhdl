@@ -24,7 +24,11 @@ end filtro_laplaciano;
 architecture arch of filtro_laplaciano is
     signal image_array : image_mem(0 to samples_per_block-1)(bits_per_sample-1 downto 0);
     signal laplacian_image_array : image_mem(0 to (image_length-2)**2-1)(bits_per_sample-1 downto 0);
-    signal cEndOri, zEndOri, cEndOut, zEndOut, cDEMUX, zDEMUX, cREGCONV, escMEM, doneIMG, maxDEMUX, validPixel : std_logic;
+    signal cEndOri, zEndOri, cEndOut, zEndOut, cREGCONV : std_logic;
+    signal cP1, cP2, cP3, cP4, cP5 : std_logic;
+    signal doneIMG, validPixel : std_logic;
+    signal escMEM, lerMEM, sMemEnd : std_logic;
+    signal opADDRESS : std_logic_vector(2 downto 0);
 begin
     -- BO
     BO: ENTITY work.filtro_bo(arch)
@@ -42,35 +46,47 @@ begin
             zEndOri         => zEndOri,
             cEndOut         => cEndOut,
             zEndOut         => zEndOut,
-            cDEMUX          => cDEMUX,
-            zDEMUX          => zDEMUX,
             cREGCONV        => cREGCONV,
+            lerMEM          => lerMEM,
             escMEM          => escMEM,
+            sMemEnd         => sMemEnd,
+            cP1             => cP1,
+            cP2             => cP2,
+            cP3             => cP3,
+            cP4             => cP4,
+            cP5             => cP5,
+            opADDRESS       => opADDRESS,
             sample_image    => image_array,
             doneIMG         => doneIMG,
-            maxDEMUX        => maxDEMUX,
             validPixel      => validPixel,
             laplacian_image => laplacian_image_array
         );
     
-    BC: ENTITY work.filtro_bc
+    
+    BC: ENTITY work.filtro_bc(behavior)
         port map(
             clk        => clk,
             rst_a      => reset,
             start      => start,
             doneIMG    => doneIMG,
-            maxDEMUX   => maxDEMUX,
             validPixel => validPixel,
             done       => done,
+            lerMEM     => lerMEM,
+            escMEM     => escMEM,
+            sMemEnd    => sMemEnd,
+            cP1        => cP1,
+            cP2        => cP2,
+            cP3        => cP3,
+            cP4        => cP4,
+            cP5        => cP5,
             cEndOri    => cEndOri,
             cEndOut    => cEndOut,
-            cDEMUX     => cDEMUX,
             cREGCONV   => cREGCONV,
             zEndOri    => zEndOri,
             zEndOut    => zEndOut,
-            zDEMUX     => zDEMUX,
-            escMEM     => escMEM
+            opADDRESS  => opADDRESS
         );
+    
 
     image_array <= to_imagem_mem(image, bits_per_sample, samples_per_block);
     laplacian_image <= to_std_logic_vector(laplacian_image_array, bits_per_sample, (image_length-2)**2);
