@@ -1,52 +1,52 @@
 v 4
-file . "filtro_laplaciano.vhdl" "e67812851e08cd1be79c9896e1b9f0eda272a867" "20250704142001.236":
-  entity filtro_laplaciano at 1( 0) + 0 on 239;
-  architecture arch of filtro_laplaciano at 24( 751) + 0 on 240;
-file . "filtro_bc.vhdl" "95fc1115c65b02adb60418edc129018bb94293fc" "20250704142001.236":
-  entity filtro_bc at 1( 0) + 0 on 237;
-  architecture behavior of filtro_bc at 20( 769) + 0 on 238;
-file . "filtro_bo.vhdl" "2e48c9f63831837a36a8e698bb8c7899fc3c6e30" "20250704142001.235":
-  entity filtro_bo at 1( 0) + 0 on 235;
-  architecture arch of filtro_bo at 29( 1079) + 0 on 236;
-file . "laplacian_convolution.vhdl" "6830a94a22432864d7b4a9e5e3233b1202a4fcd3" "20250704142001.234":
-  entity laplacian_convolution at 1( 0) + 0 on 233;
-  architecture behavior of laplacian_convolution at 15( 311) + 0 on 234;
+file . "filtro_laplaciano.vhdl" "e67812851e08cd1be79c9896e1b9f0eda272a867" "20250704143159.037":
+  entity filtro_laplaciano at 1( 0) + 0 on 359;
+  architecture arch of filtro_laplaciano at 24( 751) + 0 on 360;
+file . "filtro_bc.vhdl" "95fc1115c65b02adb60418edc129018bb94293fc" "20250704143159.037":
+  entity filtro_bc at 1( 0) + 0 on 357;
+  architecture behavior of filtro_bc at 20( 769) + 0 on 358;
+file . "filtro_bo.vhdl" "2e48c9f63831837a36a8e698bb8c7899fc3c6e30" "20250704143159.036":
+  entity filtro_bo at 1( 0) + 0 on 355;
+  architecture arch of filtro_bo at 29( 1079) + 0 on 356;
+file . "laplacian_convolution.vhdl" "ec053661c3b0c1aaab3baeaae6d03bddda6aed69" "20250704143159.035":
+  entity laplacian_convolution at 1( 0) + 0 on 353;
+  architecture behavior of laplacian_convolution at 15( 311) + 0 on 354;
 file . "counter.vhdl" "49582fd390b666d26f2be045023dfb36071c2010" "20250703022616.032":
   entity counter at 1( 0) + 0 on 49;
   architecture behavior of counter at 18( 332) + 0 on 50;
-file . "mux_2to1.vhdl" "d6aca49a4a785e64e00817f046fb9f64148a0633" "20250704142001.231":
-  entity mux_2to1 at 12( 513) + 0 on 221;
-  architecture behavior of mux_2to1 at 32( 1229) + 0 on 222;
-file . "filtro_pack.vhdl" "7f8ba1c9712159a0df68b6208a56c166c8a74e05" "20250704142001.229":
-  package filtro_pack at 1( 0) + 0 on 213 body;
-  package body filtro_pack at 23( 797) + 0 on 214;
-file . "address_logic.vhdl" "e7d481c45288da8c2adf8decd17fd64fcd574561" "20250704142001.233":
-  entity address_logic at 1( 0) + 0 on 227;
-  architecture arch of address_logic at 23( 740) + 0 on 228;
-file . "central_pixel_logic.vhdl" "9675f1abd1c2a12a54d22fcea0d00cfec5abed02" "20250704142001.233":
-  entity central_pixel_logic at 1( 0) + 0 on 229;
-  architecture arch of central_pixel_logic at 22( 666) + 0 on 230;
-file . "clip.vhdl" "7b1a1e5f955e9071d8c273e58e8249efbf40bce8" "20250704142001.232":
-  entity clip at 11( 377) + 0 on 223;
-  architecture behavior of clip at 27( 642) + 0 on 224;
-file . "comparator.vhdl" "1235e81af66c9a143fbf59c2b610763e9a087087" "20250704142001.232":
-  entity comparator at 1( 0) + 0 on 225;
-  architecture behavior of comparator at 15( 212) + 0 on 226;
+file . "mux_2to1.vhdl" "d6aca49a4a785e64e00817f046fb9f64148a0633" "20250704143159.032":
+  entity mux_2to1 at 12( 513) + 0 on 341;
+  architecture behavior of mux_2to1 at 32( 1229) + 0 on 342;
+file . "filtro_pack.vhdl" "7f8ba1c9712159a0df68b6208a56c166c8a74e05" "20250704143159.031":
+  package filtro_pack at 1( 0) + 0 on 333 body;
+  package body filtro_pack at 23( 797) + 0 on 334;
+file . "address_logic.vhdl" "e7d481c45288da8c2adf8decd17fd64fcd574561" "20250704143159.034":
+  entity address_logic at 1( 0) + 0 on 347;
+  architecture arch of address_logic at 23( 740) + 0 on 348;
+file . "central_pixel_logic.vhdl" "9675f1abd1c2a12a54d22fcea0d00cfec5abed02" "20250704143159.034":
+  entity central_pixel_logic at 1( 0) + 0 on 349;
+  architecture arch of central_pixel_logic at 22( 666) + 0 on 350;
+file . "clip.vhdl" "7b1a1e5f955e9071d8c273e58e8249efbf40bce8" "20250704143159.033":
+  entity clip at 11( 377) + 0 on 343;
+  architecture behavior of clip at 27( 642) + 0 on 344;
+file . "comparator.vhdl" "1235e81af66c9a143fbf59c2b610763e9a087087" "20250704143159.033":
+  entity comparator at 1( 0) + 0 on 345;
+  architecture behavior of comparator at 15( 212) + 0 on 346;
 file . "demux.vhdl" "3f597633306e35cb05b107c15c3a5cbff1e31fb2" "20250703022616.030":
   entity demux at 1( 0) + 0 on 47;
   architecture behavior of demux at 12( 183) + 0 on 48;
-file . "signed_adder.vhdl" "1c09a8c537969ad80ae15aadefb03209b8a1a867" "20250704142001.230":
-  entity signed_adder at 1( 0) + 0 on 217;
-  architecture arch of signed_adder at 22( 762) + 0 on 218;
-file . "signed_multiplier.vhdl" "b3c788b4b6798d871140aa88f2c4c4b6fe952e59" "20250704142001.231":
-  entity signed_multiplier at 1( 0) + 0 on 219;
-  architecture behavior of signed_multiplier at 15( 272) + 0 on 220;
-file . "unsigned_adder.vhdl" "de7706d48aab5df89aef55a492352d4ebc3a7a1e" "20250704142001.230":
-  entity unsigned_adder at 12( 492) + 0 on 215;
-  architecture arch of unsigned_adder at 33( 1264) + 0 on 216;
-file . "unsigned_register.vhdl" "79071150032dcdcd90c90aef59136ceeb43f41fe" "20250704142001.233":
-  entity unsigned_register at 13( 576) + 0 on 231;
-  architecture behavior of unsigned_register at 34( 1358) + 0 on 232;
-file . "Testbenches/filtro_laplaciano_testbench.vhdl" "d240cd0efc33fddfd8cadb7d90990a1718fe22d5" "20250704142001.237":
-  entity filtro_laplaciano_testbench at 1( 0) + 0 on 241;
-  architecture behavior of filtro_laplaciano_testbench at 8( 149) + 0 on 242;
+file . "signed_adder.vhdl" "1c09a8c537969ad80ae15aadefb03209b8a1a867" "20250704143159.032":
+  entity signed_adder at 1( 0) + 0 on 337;
+  architecture arch of signed_adder at 22( 762) + 0 on 338;
+file . "signed_multiplier.vhdl" "b3c788b4b6798d871140aa88f2c4c4b6fe952e59" "20250704143159.032":
+  entity signed_multiplier at 1( 0) + 0 on 339;
+  architecture behavior of signed_multiplier at 15( 272) + 0 on 340;
+file . "unsigned_adder.vhdl" "de7706d48aab5df89aef55a492352d4ebc3a7a1e" "20250704143159.031":
+  entity unsigned_adder at 12( 492) + 0 on 335;
+  architecture arch of unsigned_adder at 33( 1264) + 0 on 336;
+file . "unsigned_register.vhdl" "79071150032dcdcd90c90aef59136ceeb43f41fe" "20250704143159.035":
+  entity unsigned_register at 13( 576) + 0 on 351;
+  architecture behavior of unsigned_register at 34( 1358) + 0 on 352;
+file . "Testbenches/filtro_laplaciano_testbench.vhdl" "c5194f0c585faa821dff8c3afea40501aba3ea98" "20250704143159.038":
+  entity filtro_laplaciano_testbench at 1( 0) + 0 on 361;
+  architecture behavior of filtro_laplaciano_testbench at 8( 149) + 0 on 362;

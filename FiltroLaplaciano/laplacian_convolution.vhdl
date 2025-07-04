@@ -13,7 +13,7 @@ entity laplacian_convolution is
 end laplacian_convolution;
 
 architecture behavior of laplacian_convolution is
-	signal m3 : signed(bits_per_sample*2-1 downto 0);
+	signal m3 : signed((bits_per_sample+1)*2-1 downto 0);
 	signal result_sum0_2  : signed(m3'length downto 0);
 	signal result_sum1	  : signed(m3'length+1 downto 0);
 	signal result_sum2, clipped_out_value   : signed(m3'length+2 downto 0);
@@ -23,11 +23,11 @@ begin
 	-- MULTIPLICADOR
 	MULT: ENTITY work.signed_multiplier(behavior)
 		generic map(
-			N => bits_per_sample
+			N => bits_per_sample+1
 		)
 		port map(
-			a    => signed(p3),
-			b    => to_signed(-4, bits_per_sample),
+			a    => signed(resize(p3, bits_per_sample+1)),
+			b    => to_signed(-4, bits_per_sample+1),
 			mult => m3
 		);
 	
