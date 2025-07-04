@@ -17,11 +17,11 @@ architecture behavior of filtro_laplaciano_testbench is
 	
     --MATRIZ 5X5 (VALORES HEX PARA DIGITAR MAIS FACIL)
     constant C_INPUT_IMAGE : T_IMAGE_MATRIX := (
-        (x"01", x"01", x"03", x"02", x"02"), -- Linha 0
-        (x"01", x"01", x"03", x"02", x"02"), -- Linha 1
-        (x"01", x"01", x"01", x"03", x"03"), -- Linha 2
-        (x"02", x"02", x"01", x"04", x"04"), -- Linha 3
-        (x"02", x"02", x"01", x"04", x"04")  -- Linha 4
+        (x"80", x"80", x"64", x"C8", x"C8"), -- Linha 0
+        (x"80", x"80", x"64", x"C8", x"C8"), -- Linha 1
+        (x"31", x"31", x"66", x"34", x"34"), -- Linha 2
+        (x"02", x"02", x"58", x"2E", x"2E"), -- Linha 3
+        (x"02", x"02", x"58", x"2E", x"2E")  -- Linha 4
     );
 
     signal s_clk             : std_logic := '0';

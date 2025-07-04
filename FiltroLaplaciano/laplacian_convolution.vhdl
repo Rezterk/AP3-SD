@@ -13,21 +13,21 @@ entity laplacian_convolution is
 end laplacian_convolution;
 
 architecture behavior of laplacian_convolution is
-	signal m3, clipped_mult_value : signed(bits_per_sample*2+1 downto 0);
-	signal resized_p1, resized_p2, resized_p3, resized_p4 : signed(bits_per_sample downto 0);
-	signal result_sum0_1, result_sum0_2 : signed(bits_per_sample+1 downto 0);
-	signal resized_p5, result_sum1 : signed(bits_per_sample+2 downto 0);
-	signal result_sum2, clipped_out_value : signed(bits_per_sample+3 downto 0);
+	signal m3 : signed(bits_per_sample*2-1 downto 0);
+	signal result_sum0_2  : signed(m3'length downto 0);
+	signal result_sum1	  : signed(m3'length+1 downto 0);
+	signal result_sum2, clipped_out_value   : signed(m3'length+2 downto 0);
+	signal result_sum0_1  : signed(bits_per_sample+1 downto 0);
 begin
 
 	-- MULTIPLICADOR
 	MULT: ENTITY work.signed_multiplier(behavior)
 		generic map(
-			N => bits_per_sample+1
+			N => bits_per_sample
 		)
 		port map(
-			a    => resized_p3,
-			b    => to_signed(-4, bits_per_sample+1),
+			a    => signed(p3),
+			b    => to_signed(-4, bits_per_sample),
 			mult => m3
 		);
 	
@@ -38,28 +38,28 @@ begin
 			N => bits_per_sample+1
 		)
 		port map(
-			input_a => resized_p1,
-			input_b => resized_p2,
+			input_a => signed(resize(p1, bits_per_sample+1)),
+			input_b => signed(resize(p2, bits_per_sample+1)),
 			sum     => result_sum0_1
 		);
 
 	SUM0_2: ENTITY work.signed_adder(arch)
 		generic map(
-			N => bits_per_sample+1
+			N => m3'length
 		)
 		port map(
-			input_a => clipped_mult_value(bits_per_sample downto 0),
-			input_b => resized_p4,
+			input_a => m3,
+			input_b => signed(resize(p4, m3'length)),
 			sum     => result_sum0_2
 		);
 	
 	-- ===== NÍVEL 1 =====
 	SUM1: ENTITY work.signed_adder(arch)
 		generic map(
-			N => bits_per_sample+2
+			N => m3'length+1
 		)
 		port map(
-			input_a => result_sum0_1,
+			input_a => resize(result_sum0_1, m3'length+1),
 			input_b => result_sum0_2,
 			sum     => result_sum1
 		);
@@ -68,47 +68,27 @@ begin
 	
 	SUM2: ENTITY work.signed_adder(arch)
 		generic map(
-			N => bits_per_sample+3
+			N => m3'length+2
 		)
 		port map(
 			input_a => result_sum1,
-			input_b => resized_p5,
+			input_b => signed(resize(p5, m3'length+2)),
 			sum     => result_sum2
 		);
 
 	-- CLIP do PIXEL resultante
 
-	CLIP_P: ENTITY work.clip(behavior)
+	CLIP: ENTITY work.clip(behavior)
 		generic map(
-			N    => bits_per_sample+4,
+			N    => result_sum2'length,
 			LOW  => 0,
-			HIGH => (p_out'length**2)-1
+			HIGH => (2**bits_per_sample)-1
 		)
 		port map(
 			value         => result_sum2,
 			clipped_value => clipped_out_value
 		);
 	
-	-- CLIP do NÚMERO MULTIPLICADO
-	
-	CLIP_M: ENTITY work.clip(behavior)
-		generic map(
-			N    => bits_per_sample*2+2,
-			LOW  => 0,
-			HIGH => (p_out'length**2)-1
-		)
-		port map(
-			value         => m3,
-			clipped_value => clipped_mult_value
-		);
-	
-
-	-- Aumentando os pixels para Sinalizar
-	resized_p1 <= signed(resize(p1, bits_per_sample+1));
-	resized_p2 <= signed(resize(p2, bits_per_sample+1));
-	resized_p3 <= signed(resize(p3, bits_per_sample+1));
-	resized_p4 <= signed(resize(p4, bits_per_sample+1));
-	resized_p5 <= signed(resize(p5, bits_per_sample+3)); -- Como o p5 será o último a ser somado, seu tamanho será diferente
 
 	-- Fornecendo a saída no tamanho esperado
 	p_out <= unsigned(clipped_out_value(p_out'range));
