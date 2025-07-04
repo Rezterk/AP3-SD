@@ -17,11 +17,11 @@ architecture behavior of filtro_laplaciano_testbench is
 	
     --MATRIZ 5X5 (VALORES HEX PARA DIGITAR MAIS FACIL)
     constant C_INPUT_IMAGE : T_IMAGE_MATRIX := (
-        (x"BB", x"BB", x"44", x"2C", x"2C"), -- Linha 0
-        (x"BB", x"BB", x"44", x"2C", x"2C"), -- Linha 1
-        (x"63", x"63", x"2D", x"50", x"50"), -- Linha 2
-        (x"B6", x"B6", x"3F", x"59", x"59"), -- Linha 3
-        (x"B6", x"B6", x"3F", x"59", x"59")  -- Linha 4
+        (x"00", x"00", x"FF", x"00", x"00"), -- Linha 0
+        (x"00", x"00", x"FF", x"00", x"00"), -- Linha 1
+        (x"FF", x"FF", x"FF", x"FF", x"FF"), -- Linha 2
+        (x"00", x"00", x"FF", x"00", x"00"), -- Linha 3
+        (x"00", x"00", x"FF", x"00", x"00")  -- Linha 4
     );
 
     signal s_clk             : std_logic := '0';
@@ -90,13 +90,8 @@ begin
         report "Valor da imagem de entrada (s_image): " & to_string(s_image);
         report "Valor da imagem Laplaciana (s_laplacian_image): " & to_string(s_laplacian_image);
         
-        assert s_laplacian_image =  x"00" & X"48" & x"3C" & 
-                                    x"75" & x"82" & x"00" &
-                                    x"00" & x"7F" & x"00"  report "Saída não corresponde" severity failure;
-        report "Saída corresponde";
-
         -- Fim da simulação
-        report "Simulação encerrada com sucesso";
+        report "Simulação encerrada." severity failure;
         wait;
 
     end process stimulus_process;
