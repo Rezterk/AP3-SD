@@ -156,7 +156,7 @@ begin
                 cP3       <= '0';
                 cP4       <= '0';
                 cP5       <= '0';
-                sMemEnd   <= '0';
+                sMemEnd   <= '1';
                 escMEM    <= '0';
                 lerMEM    <= '1';
                 opADDRESS <= "000";
@@ -172,7 +172,7 @@ begin
                 cP3       <= '0';
                 cP4       <= '0';
                 cP5       <= '0';
-                sMemEnd   <= '0';
+                sMemEnd   <= '1';
                 escMEM    <= '0';
                 lerMEM    <= '1';
                 opADDRESS <= "001";
@@ -188,7 +188,7 @@ begin
                 cP3       <= '1';
                 cP4       <= '0';
                 cP5       <= '0';
-                sMemEnd   <= '0';
+                sMemEnd   <= '1';
                 escMEM    <= '0';
                 lerMEM    <= '1';
                 opADDRESS <= "010";
@@ -204,7 +204,7 @@ begin
                 cP3       <= '0';
                 cP4       <= '1';
                 cP5       <= '0';
-                sMemEnd   <= '0';
+                sMemEnd   <= '1';
                 escMEM    <= '0';
                 lerMEM    <= '1';
                 opADDRESS <= "011";
@@ -220,7 +220,7 @@ begin
                 cP3       <= '0';
                 cP4       <= '0';
                 cP5       <= '1';
-                sMemEnd   <= '0';
+                sMemEnd   <= '1';
                 escMEM    <= '0';
                 lerMEM    <= '1';
                 opADDRESS <= "100";

@@ -240,7 +240,7 @@ begin
         if lerMEM = '1' then
             valueOriMem <= sample_image(to_integer(unsigned(memEnd)));
         else
-            valueOriMem <= to_unsigned(0, valueOriMem'range);
+            valueOriMem <= to_unsigned(0, bits_per_sample);
         end if;
     end process;
 
